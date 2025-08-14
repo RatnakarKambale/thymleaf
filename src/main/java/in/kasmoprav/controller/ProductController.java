@@ -15,20 +15,19 @@ public class ProductController {
 
 	@GetMapping("/product")
 	public String showForm(Model model) {
-	    model.addAttribute("product", new Product());
-	    return "index.html";
+		model.addAttribute("product", new Product());
+		return "index.html";
 	}
 
 	@PostMapping("/product")
-	public String saveProduct(
-	        @Valid @ModelAttribute("product") Product product,
-	        BindingResult result,
-	        Model model) {
+	public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model) {
 
-	    if (result.hasErrors()) {
-	        return "index.html"; // redisplay form
-	    }
-	    model.addAttribute("message", "Product saved successfully!");
-	    return "index2.html";
+		if (result.hasErrors()) {
+			return "index.html"; // redisplay form
+		} else {
+			model.addAttribute("message", "Product saved successfully!");
+		}
+		return "index2.html";
+
 	}
 }
